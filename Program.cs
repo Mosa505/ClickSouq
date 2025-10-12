@@ -1,3 +1,7 @@
+using ClickSouq.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 namespace ClickSouq
 {
     public class Program
@@ -8,6 +12,10 @@ namespace ClickSouq
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options=>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb"))
+            );
 
             var app = builder.Build();
 
