@@ -7,13 +7,14 @@ namespace ClickSouq.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryController(ApplicationDbContext context )
+        public CategoryController(ApplicationDbContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            return View();
+            var categories = _context.categories.ToList();
+            return View(categories);
         }
     }
 }
