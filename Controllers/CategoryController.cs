@@ -35,8 +35,10 @@ namespace ClickSouq.Controllers
             {
                 _context.categories.Add(Obj);
                 _context.SaveChanges();
+                TempData["success"] = "Category Created successfully";
                 return RedirectToAction("Index");
             }
+           
             return View(Obj);
         }
 
@@ -61,9 +63,11 @@ namespace ClickSouq.Controllers
             if (ModelState.IsValid)
             {
                 _context.categories.Update(Obj);
-                _context.SaveChanges();
+                _context.SaveChanges(); 
+                TempData["success"] = "Category Edit successfully";
                 return RedirectToAction("Index");
             }
+           
             return View();
         }
 
@@ -92,6 +96,7 @@ namespace ClickSouq.Controllers
 
             _context.categories.Remove(category);
             _context.SaveChanges();
+            TempData["success"] = "Category Delete successfully";
             return RedirectToAction("Index");
 
         }
