@@ -16,4 +16,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClickSouq.DataAccess\ClickSouq.DataAccess.csproj" />
+    <ProjectReference Include="..\ClickSouq.Models\ClickSouq.Models.csproj" />
+    <ProjectReference Include="..\ClickSouq.Utility\ClickSouq.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

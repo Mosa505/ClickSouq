@@ -1,4 +1,4 @@
-using ClickSouq.Data;
+using ClickSouq.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 

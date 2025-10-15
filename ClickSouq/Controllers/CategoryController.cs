@@ -1,4 +1,4 @@
-﻿using ClickSouq.Data;
+﻿using ClickSouq.DataAccess;
 using ClickSouq.Models;
 using Microsoft.AspNetCore.Mvc;
 

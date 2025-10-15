@@ -1,7 +1,7 @@
 ﻿using ClickSouq.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClickSouq.Data
+namespace ClickSouq.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {
