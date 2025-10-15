@@ -1,0 +1,50 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Update Category";
+}
+<div class="card shadow border-0 mt-5 rounded-4" style="max-width: 1100px; margin: auto;">
+    <div class="card-header text-white py-4 rounded-top-4"
+         style="background-color: #08092E; border-bottom: none;">
+        <h2 class="text-center fw-semibold mb-0"> Update Category</h2>
+    </div>
+
+    <div class="card-body bg-white p-5 rounded-bottom-4">
+        <form method="post" class="row g-3">
+            <div class="col-12">
+
+                <div class="form-floating mb-4">
+                    <input asp-for="Name" class="form-control border-0 shadow" placeholder="Category Name" />
+                    <label asp-for="Name" class="ms-2">Category Name</label>
+                    <span asp-validation-for="Name" class="text-danger "></span>
+                </div>
+
+
+                <div class="form-floating mb-4">
+                    <input asp-for="DisplayOrder" class="form-control border-0 shadow" placeholder="Display Order" />
+                    <label asp-for="DisplayOrder" class="ms-2">Display Order</label>
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button type="submit" class="btn btn-success col-3">
+                         Update
+                    </button>
+                    <a asp-controller="Category" asp-action="Index" class="btn btn-close-white  col-3 ">
+
+                        <i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+                    </a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
