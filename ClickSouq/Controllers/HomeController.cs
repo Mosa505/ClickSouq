@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using ClickSouq.Models;
+using BookNest.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClickSouq.Controllers
+namespace BookNest.Controllers
 {
     public class HomeController : Controller
     {

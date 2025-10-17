@@ -1,8 +1,10 @@
-using ClickSouq.DataAccess;
+using BookNest.DataAccess;
+using BookNest.DataAccess.Repository.IRepository;
+using BookNest.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace ClickSouq
+namespace BookNest
 {
     public class Program
     {
@@ -16,6 +18,8 @@ namespace ClickSouq
             builder.Services.AddDbContext<ApplicationDbContext>(options=>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb"))
             );
+
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 
             var app = builder.Build();
 

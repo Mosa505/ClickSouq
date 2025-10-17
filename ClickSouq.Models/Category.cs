@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ClickSouq.Models
+namespace BookNest.Models
 {
     public class Category
     {

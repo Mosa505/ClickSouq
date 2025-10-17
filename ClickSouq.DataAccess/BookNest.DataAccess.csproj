@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClickSouq.Models\ClickSouq.Models.csproj" />
+    <ProjectReference Include="..\ClickSouq.Models\BookNest.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
-﻿using ClickSouq.Models;
+﻿using BookNest.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClickSouq.DataAccess
+namespace BookNest.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {

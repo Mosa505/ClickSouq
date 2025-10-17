@@ -1,4 +1,4 @@
-namespace ClickSouq.Models
+namespace BookNest.Models
 {
     public class ErrorViewModel
     {

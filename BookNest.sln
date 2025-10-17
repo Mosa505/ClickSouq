@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSouq", "ClickSouq\ClickSouq.csproj", "{9BB048CD-98B1-497C-8026-5BD53E43A421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookNest", "ClickSouq\BookNest.csproj", "{9BB048CD-98B1-497C-8026-5BD53E43A421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSouq.DataAccess", "ClickSouq.DataAccess\ClickSouq.DataAccess.csproj", "{125E44DB-1B63-4AF8-8807-300978A9C5F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookNest.DataAccess", "ClickSouq.DataAccess\BookNest.DataAccess.csproj", "{125E44DB-1B63-4AF8-8807-300978A9C5F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSouq.Models", "ClickSouq.Models\ClickSouq.Models.csproj", "{E006D478-5B8A-46F2-B6DA-C344D78086C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookNest.Models", "ClickSouq.Models\BookNest.Models.csproj", "{E006D478-5B8A-46F2-B6DA-C344D78086C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSouq.Utility", "ClickSouq.Utility\ClickSouq.Utility.csproj", "{023CEB26-8A03-4E0A-B9A0-75AD743F011A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookNest.Utility", "ClickSouq.Utility\BookNest.Utility.csproj", "{4CE7931A-B9BF-526C-1297-7E409BFA38A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{E006D478-5B8A-46F2-B6DA-C344D78086C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E006D478-5B8A-46F2-B6DA-C344D78086C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E006D478-5B8A-46F2-B6DA-C344D78086C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{023CEB26-8A03-4E0A-B9A0-75AD743F011A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{023CEB26-8A03-4E0A-B9A0-75AD743F011A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{023CEB26-8A03-4E0A-B9A0-75AD743F011A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{023CEB26-8A03-4E0A-B9A0-75AD743F011A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE7931A-B9BF-526C-1297-7E409BFA38A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE7931A-B9BF-526C-1297-7E409BFA38A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE7931A-B9BF-526C-1297-7E409BFA38A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE7931A-B9BF-526C-1297-7E409BFA38A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

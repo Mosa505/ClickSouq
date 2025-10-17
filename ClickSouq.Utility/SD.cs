@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClickSouq.Utility
+namespace BookNest.Utility
 {
     public static class SD
     {

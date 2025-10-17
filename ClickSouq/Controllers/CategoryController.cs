@@ -1,20 +1,21 @@
-﻿using ClickSouq.DataAccess;
-using ClickSouq.Models;
+﻿using BookNest.DataAccess;
+using BookNest.DataAccess.Repository.IRepository;
+using BookNest.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClickSouq.Controllers
+namespace BookNest.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _UnitDb;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(IUnitOfWork UnitDb)
         {
-            _context = context;
+            _UnitDb = UnitDb;
         }
         public IActionResult Index()
         {
-            var categories = _context.categories.ToList();
+            var categories = _UnitDb.Category.GetAll();
             return View(categories);
         }
 
@@ -33,8 +34,8 @@ namespace ClickSouq.Controllers
             }
             if (ModelState.IsValid)
             {
-                _context.categories.Add(Obj);
-                _context.SaveChanges();
+                _UnitDb.Category.Add(Obj);
+                _UnitDb.Save();
                 TempData["success"] = "Category Created successfully";
                 return RedirectToAction("Index");
             }
@@ -48,7 +49,7 @@ namespace ClickSouq.Controllers
             {
                 return NotFound();
             }
-            var category = _context.categories.Find(id);
+            var category = _UnitDb.Category.Get(e=> e.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -62,8 +63,8 @@ namespace ClickSouq.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.categories.Update(Obj);
-                _context.SaveChanges(); 
+                _UnitDb.Category.Update(Obj);
+                _UnitDb.Save(); 
                 TempData["success"] = "Category Edit successfully";
                 return RedirectToAction("Index");
             }
@@ -77,7 +78,7 @@ namespace ClickSouq.Controllers
             {
                 return NotFound();
             }
-            var category = _context.categories.Find(id);
+            var category = _UnitDb.Category.Get(e => e.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -89,13 +90,13 @@ namespace ClickSouq.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _context.categories.Find(id);
+            var category = _UnitDb.Category.Get(e => e.Id == id);
 
             if (category == null)
                 return NotFound();
 
-            _context.categories.Remove(category);
-            _context.SaveChanges();
+            _UnitDb.Category.Remove(category);
+            _UnitDb.Save();
             TempData["success"] = "Category Delete successfully";
             return RedirectToAction("Index");
 
