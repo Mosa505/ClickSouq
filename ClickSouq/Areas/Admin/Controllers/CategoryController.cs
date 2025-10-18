@@ -3,8 +3,9 @@ using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookNest.Controllers
+namespace BookNest.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _UnitDb;

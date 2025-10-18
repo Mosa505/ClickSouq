@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ClickSouq.Models\BookNest.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
