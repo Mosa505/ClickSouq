@@ -11,15 +11,18 @@ namespace BookNest.DataAccess.Repository.IRepository
     {
         private readonly ApplicationDbContext _unitDb;
         public ICategoryRepository Category { get; private set; }
+        public IProductRepository Product { get; private set; }
+
         public UnitOfWork( ApplicationDbContext UnitDb)
         {
             _unitDb = UnitDb;
             Category =new CategoryRepository(_unitDb);
+            Product =new ProductRepository(_unitDb);
         }
         public void Save()
         {
             _unitDb.SaveChanges();
-
+            
         }
     }
 }

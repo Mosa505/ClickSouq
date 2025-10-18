@@ -1,0 +1,74 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "All Product";
+}
+<div class="card shadow border-0 mt-5 rounded-4" style="max-width: 1500px; margin: auto;">
+    <div class="card-header text-white py-4 rounded-top-4"
+         style="background-color: #096643; border-bottom: none;">
+        <h2 class="text-center fw-semibold mb-0"> LIST OF Product </h2>
+    </div>
+
+    <div class="card-body bg-white p-5 rounded-bottom-4">
+
+        <div class="container">
+            <div class="row pb-3">
+
+                <div class="text-dark col-6 ">
+                    
+                </div>
+
+                <div class="col-6  text-end ">
+
+                    <a asp-controller="Product" asp-action="Create" class="btn btn-primary "> <i class="bi bi-plus-circle"></i> NEW Product  </a>
+
+                </div>
+
+            </div>
+
+
+
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col"> ISBN </th>
+                        <th scope="col"> Author </th>
+                        <th scope="col"> List Price </th>
+                        <th scope="col"> Product </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Item in Model)
+                    {
+                        <tr>
+                            <td>@Item.Title</td>
+                            <td>@Item.ISBN</td>
+                            <td>@Item.Author</td>
+                            <td>@Item.ListPrice$</td>
+                            <td></td>
+                            <td>
+                                <div class="w-100 btn-group " role="group">
+                                    <a asp-Controller="Product" asp-action="Edit" asp-route-id="@Item.Id" class="btn btn-light mx-2 ">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+
+                                    <a asp-Controller="Product" asp-action="Delete" asp-route-id="@Item.Id" class="btn btn-danger mx-2 ">
+                                        <i class="bi bi-trash3"></i> Delete
+                                    </a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+
