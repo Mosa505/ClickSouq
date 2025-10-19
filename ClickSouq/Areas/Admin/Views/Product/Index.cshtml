@@ -35,7 +35,7 @@
                         <th scope="col"> ISBN </th>
                         <th scope="col"> Author </th>
                         <th scope="col"> List Price </th>
-                        <th scope="col"> Product </th>
+                        <th scope="col"> Category </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -47,7 +47,8 @@
                             <td>@Item.ISBN</td>
                             <td>@Item.Author</td>
                             <td>@Item.ListPrice$</td>
-                            <td></td>
+                            <td>@Item.CategoryId</td>
+                            
                             <td>
                                 <div class="w-100 btn-group " role="group">
                                     <a asp-Controller="Product" asp-action="Edit" asp-route-id="@Item.Id" class="btn btn-light mx-2 ">

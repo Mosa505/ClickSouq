@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookNest.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251018123901_AddProductInDatabase")]
-    partial class AddProductInDatabase
+    [Migration("20251018184010_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,25 +49,31 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 1,
                             DisplayOrder = 1,
-                            Name = "History"
+                            Name = "Political Fiction"
                         },
                         new
                         {
                             Id = 2,
                             DisplayOrder = 2,
-                            Name = "Classical"
+                            Name = "Human Rights"
                         },
                         new
                         {
                             Id = 3,
                             DisplayOrder = 3,
-                            Name = "Geography"
+                            Name = "Historical"
                         },
                         new
                         {
                             Id = 4,
                             DisplayOrder = 4,
-                            Name = "Geography"
+                            Name = "Autobiography"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 5,
+                            Name = "Thought"
                         });
                 });
 
@@ -82,6 +88,9 @@ namespace BookNest.DataAccess.Migrations
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -109,6 +118,8 @@ namespace BookNest.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -116,6 +127,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 1,
                             Author = "Ghassan Kanafani",
+                            CategoryId = 1,
                             Description = "A symbolic Palestinian novel that depicts the suffering of refugees and the harsh realities of displacement through a deeply human and tragic story.",
                             ISBN = "ARB1001001",
                             ListPrice = 100.0,
@@ -128,6 +140,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 2,
                             Author = "Abdul Rahman Munif",
+                            CategoryId = 2,
                             Description = "A powerful novel exposing political oppression and human suffering in the Middle East, written with deep psychological and social insight.",
                             ISBN = "ARB2002002",
                             ListPrice = 95.0,
@@ -140,6 +153,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 4,
                             Author = "Ibrahim al-Sakran",
+                            CategoryId = 5,
                             Description = "An analytical and philosophical book exploring how modern distractions affect human consciousness, faith, and culture.",
                             ISBN = "ARB4004004",
                             ListPrice = 85.0,
@@ -152,6 +166,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 5,
                             Author = "Abdelwahab Elmessiri",
+                            CategoryId = 4,
                             Description = "An autobiographical work that traces Elmessiri’s personal and intellectual development, offering reflections on modernity, identity, and faith.",
                             ISBN = "ARB5005005",
                             ListPrice = 120.0,
@@ -164,6 +179,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 6,
                             Author = "Muhammad Asad",
+                            CategoryId = 4,
                             Description = "A captivating autobiography of a Western intellectual who embraces Islam, offering deep insights into faith, culture, and personal transformation.",
                             ISBN = "ARB6006006",
                             ListPrice = 105.0,
@@ -176,6 +192,7 @@ namespace BookNest.DataAccess.Migrations
                         {
                             Id = 7,
                             Author = "Radwa Ashour",
+                            CategoryId = 3,
                             Description = "A historical trilogy set in post-Reconquista Spain, telling the story of Muslims after the fall of Granada, filled with emotion, loss, and resistance.",
                             ISBN = "ARB7007007",
                             ListPrice = 130.0,
@@ -184,6 +201,17 @@ namespace BookNest.DataAccess.Migrations
                             Price50 = 110.0,
                             Title = "Granada Trilogy"
                         });
+                });
+
+            modelBuilder.Entity("BookNest.Models.Product", b =>
+                {
+                    b.HasOne("BookNest.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

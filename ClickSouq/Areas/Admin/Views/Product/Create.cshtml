@@ -1,6 +1,7 @@
 ﻿@model Product
 @{
     ViewData["Title"] = "Create New Product";
+  
 }
 
 <div class="card shadow border-0 mt-5 rounded-4" style="max-width: 1100px; margin: auto;">
@@ -23,6 +24,14 @@
                     <input asp-for="Author" class="form-control border-0 shadow" placeholder="" />
                     <label asp-for="Author" class="ms-2"></label>
                     <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                @* llll *@
+                <div class="form-floating mb-4">
+                    <select asp-for="CategoryId"  class="form-select border-0 shadow">
+                        <option value="">-- Select Category --</option>
+                    </select>
+                    <label asp-for="CategoryId" class="ms-2"></label>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
 
                 <div class="form-floating mb-4">

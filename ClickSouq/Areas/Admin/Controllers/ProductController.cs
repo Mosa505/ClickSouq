@@ -20,6 +20,8 @@ namespace BookNest.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Categories"] = _unitOfWork.Category.GetAll();
+
             return View();
         }
 
@@ -27,6 +29,7 @@ namespace BookNest.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Product Obj)
         {
+            
             if (ModelState.IsValid)
             {
                 _unitOfWork.Product.Add(Obj);
@@ -34,6 +37,7 @@ namespace BookNest.Areas.Admin.Controllers
                 TempData["success"] = "Product Created successfully";
                 return RedirectToAction("Index");
             }
+          
 
             return View(Obj);
         }
@@ -49,19 +53,23 @@ namespace BookNest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            
             return View(product);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Product Obj)
         {
+            
             if (ModelState.IsValid)
             {
+
                 _unitOfWork.Product.Update(Obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Edit successfully";
                 return RedirectToAction("Index");
             }
+          
             return View(Obj);
 
         }
@@ -78,6 +86,7 @@ namespace BookNest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             return View(Product);
         }
 
