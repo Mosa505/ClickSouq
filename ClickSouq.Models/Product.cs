@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -40,7 +41,9 @@ namespace BookNest.Models
         [ForeignKey("Category")]
         [DisplayName("Category")]
         public int CategoryId { get; set; }
+        //[ValidateNever]
         public Category Category { get; set; }
+        [DisplayName("Product Image")]
         public string ImageURL { get; set; }
 
 

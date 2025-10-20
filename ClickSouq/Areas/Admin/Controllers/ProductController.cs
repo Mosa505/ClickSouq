@@ -1,6 +1,8 @@
 ﻿using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
+using BookNest.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookNest.Areas.Admin.Controllers
 {
@@ -20,27 +22,49 @@ namespace BookNest.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["Categories"] = _unitOfWork.Category.GetAll();
+            ProductViewModel productVM = new ProductViewModel()
+            {
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                new SelectListItem
+                {
+                    Text = e.Name,
+                    Value = e.Id.ToString()
+                }
+                )
 
-            return View();
+            };
+            return View(productVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product Obj)
+        public IActionResult Create(ProductViewModel Obj)
         {
-            
+
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(Obj);
+                _unitOfWork.Product.Add(Obj.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created successfully";
                 return RedirectToAction("Index");
             }
-          
+            else
+            {
+                Obj.CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                     new SelectListItem
+                     {
+                         Text = e.Name,
+                         Value = e.Id.ToString()
+                     }
 
-            return View(Obj);
+                    );
+                return View(Obj);
+            }
+
         }
+
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -53,14 +77,14 @@ namespace BookNest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            
+
             return View(product);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Product Obj)
         {
-            
+
             if (ModelState.IsValid)
             {
 
@@ -69,7 +93,7 @@ namespace BookNest.Areas.Admin.Controllers
                 TempData["success"] = "Product Edit successfully";
                 return RedirectToAction("Index");
             }
-          
+
             return View(Obj);
 
         }
