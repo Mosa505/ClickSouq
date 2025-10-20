@@ -41,7 +41,7 @@ namespace BookNest.Models
         [ForeignKey("Category")]
         [DisplayName("Category")]
         public int CategoryId { get; set; }
-        //[ValidateNever]
+        [ValidateNever]
         public Category Category { get; set; }
         [DisplayName("Product Image")]
         public string ImageURL { get; set; }

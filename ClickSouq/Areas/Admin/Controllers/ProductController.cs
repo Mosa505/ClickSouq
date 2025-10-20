@@ -77,24 +77,46 @@ namespace BookNest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ProductViewModel productVM = new()
+            {
+                Product = product,
+                CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                new SelectListItem
+                {
+                    Text = e.Name,
+                    Value = e.Id.ToString()
+                }
 
-            return View(product);
+                )
+            };
+
+            return View(productVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product Obj)
+        public IActionResult Edit(ProductViewModel Obj)
         {
 
             if (ModelState.IsValid)
             {
 
-                _unitOfWork.Product.Update(Obj);
+                _unitOfWork.Product.Update(Obj.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Edit successfully";
                 return RedirectToAction("Index");
             }
+            else
+            {
+                Obj.CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                     new SelectListItem
+                     {
+                         Text = e.Name,
+                         Value = e.Id.ToString()
+                     }
 
-            return View(Obj);
+                    );
+                return View(Obj);
+            }
 
         }
 
@@ -110,8 +132,20 @@ namespace BookNest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ProductViewModel productVM = new()
+            {
+                Product = Product,
+                CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                new SelectListItem
+                {
+                    Text=e.Name,
+                    Value = e.Id.ToString()
+                }
 
-            return View(Product);
+                )
+            };
+
+            return View(productVM);
         }
 
         [HttpPost, ActionName("Delete")]
