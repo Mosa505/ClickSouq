@@ -43,7 +43,8 @@ namespace BookNest.Models
         public int CategoryId { get; set; }
         [ValidateNever]
         public Category Category { get; set; }
-        [DisplayName("Product Image")]
+        [DisplayName("Image")]
+        [ValidateNever]
         public string ImageURL { get; set; }
 
 
