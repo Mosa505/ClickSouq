@@ -64,7 +64,7 @@ namespace BookNest.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(Obj.Product.ImageURL))
                     {
                         //Delete Old Image 
-                        string oldImage = Path.Combine(productPath, Obj.Product.ImageURL.TrimStart('/'));
+                        string oldImage = Path.Combine(productPath, Path.GetFileName(Obj.Product.ImageURL));
 
                         if (System.IO.File.Exists(oldImage))
                         {
@@ -83,14 +83,17 @@ namespace BookNest.Areas.Admin.Controllers
                 if (Obj.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(Obj.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product Create successfully";
                 }
                 else
                 {
                     _unitOfWork.Product.Update(Obj.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product Update successfully";
                 }
 
-                _unitOfWork.Save();
-                TempData["success"] = "Product Created successfully";
+                
                 return RedirectToAction("Index");
             }
             else

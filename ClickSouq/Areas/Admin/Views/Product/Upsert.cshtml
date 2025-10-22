@@ -13,6 +13,7 @@
     <div class="card-body bg-white p-5 rounded-bottom-4">
         <form method="post" class="row g-3" enctype="multipart/form-data">
             <input asp-for="Product.Id" hidden />
+            <input asp-for="Product.ImageURL" hidden />
             <div class="row">
                 <div class="col-10">
                     <div class="col-12">
@@ -49,22 +50,26 @@
                             <span asp-validation-for="Product.ISBN" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-4">
-                            <input asp-for="Product.ListPrice" class="form-control border-0 shadow" placeholder="" />
+                            <input asp-for="Product.ListPrice" class="form-control border-0 shadow" placeholder=""
+                                   value=@(Model.Product.Id == 0 ? "" : Model.Product.ListPrice) />
                             <label asp-for="Product.ListPrice" class="ms-2"></label>
                             <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-4">
-                            <input asp-for="Product.Price" class="form-control border-0 shadow" placeholder="" />
+                            <input asp-for="Product.Price" class="form-control border-0 shadow" placeholder=""
+                            value=@(Model.Product.Id==0? "":Model.Product.Price ) />
                             <label asp-for="Product.Price" class="ms-2"></label>
                             <span asp-validation-for="Product.Price" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-4">
-                            <input asp-for="Product.Price50" class="form-control border-0 shadow" placeholder="" />
+                            <input asp-for="Product.Price50" class="form-control border-0 shadow" placeholder=""
+                                   value=@(Model.Product.Id == 0 ? "" : Model.Product.Price50) />
                             <label asp-for="Product.Price50" class="ms-2"></label>
                             <span asp-validation-for="Product.Price50" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-4">
-                            <input asp-for="Product.Price100" class="form-control border-0 shadow" placeholder="" />
+                            <input asp-for="Product.Price100" class="form-control border-0 shadow" placeholder=""
+                                   value=@(Model.Product.Id == 0 ? "" : Model.Product.Price100) />
                             <label asp-for="Product.Price100" class="ms-2"></label>
                             <span asp-validation-for="Product.Price100" class="text-danger"></span>
                         </div>
