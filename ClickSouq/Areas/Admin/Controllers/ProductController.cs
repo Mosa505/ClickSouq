@@ -18,7 +18,7 @@ namespace BookNest.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var Products = _unitOfWork.Product.GetAll();
+            var Products = _unitOfWork.Product.GetAll(IncludeProperties: "Category").ToList();
             return View(Products);
         }
         [HttpGet]
@@ -93,7 +93,7 @@ namespace BookNest.Areas.Admin.Controllers
                     TempData["success"] = "Product Update successfully";
                 }
 
-                
+
                 return RedirectToAction("Index");
             }
             else
@@ -153,5 +153,16 @@ namespace BookNest.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+
+        #region API Call 
+
+        public IActionResult GetAll()
+        {
+            var product = _unitOfWork.Product.GetAll(IncludeProperties:"Category").ToList();
+            return Json(new {data = product });
+        }
+
+
+        #endregion
     }
 }

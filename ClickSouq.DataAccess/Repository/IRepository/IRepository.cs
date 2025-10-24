@@ -9,8 +9,8 @@ namespace BookNest.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T Get(Expression<Func<T, bool>> filter);
+        IEnumerable<T> GetAll(string? IncludeProperties = null);
+        T Get(Expression<Func<T, bool>> filter, string? IncludeProperties = null);
         void Add(T item);
         void Remove(T item);
         void RemoveRange(IEnumerable<T> Items);
