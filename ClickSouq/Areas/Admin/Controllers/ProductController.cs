@@ -58,6 +58,7 @@ namespace BookNest.Areas.Admin.Controllers
                 string WWWRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
                 {
+
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(WWWRootPath, @"images/product");
 
@@ -79,6 +80,23 @@ namespace BookNest.Areas.Admin.Controllers
 
                     Obj.Product.ImageURL = "/images/product/" + fileName;
                 }
+                else
+                {
+
+                    ModelState.AddModelError("Product.ImageURL", "Please upload a product image.");
+                    ProductViewModel productVM = new ProductViewModel()
+                    {
+                        Product = new Product(),
+                        CategoryList = _unitOfWork.Category.GetAll().Select(e =>
+                        new SelectListItem
+                        {
+                            Text = e.Name,
+                            Value = e.Id.ToString()
+                        })
+
+                    };
+                    return View(productVM);
+                }
 
                 if (Obj.Product.Id == 0)
                 {
@@ -86,6 +104,7 @@ namespace BookNest.Areas.Admin.Controllers
                     _unitOfWork.Save();
                     TempData["success"] = "Product Create successfully";
                 }
+
                 else
                 {
                     _unitOfWork.Product.Update(Obj.Product);
@@ -118,11 +137,13 @@ namespace BookNest.Areas.Admin.Controllers
             var product = _unitOfWork.Product.GetAll(IncludeProperties: "Category").ToList();
             return Json(new { data = product });
         }
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var productDelete = _unitOfWork.Product.Get(e=>e.Id == id);
-            if (productDelete == null) {
-                return Json(new { success =false , massage ="Error While Deleting" });
+            var productDelete = _unitOfWork.Product.Get(e => e.Id == id);
+            if (productDelete == null)
+            {
+                return Json(new { success = false, massage = "Error While Deleting" });
             }
             // Delete Image
             var oldImage = Path.Combine(_webHostEnvironment.WebRootPath, Path.GetFileName(productDelete.ImageURL));

@@ -76,7 +76,7 @@
                         <div class="form-floating py-2 col-12 mb-5">
                             <input type="file" name="file" class="form-control border-0 shadow" />
                             <label asp-for="Product.ImageURL" class="ms-2"></label>
-
+                            <span asp-validation-for="Product.ImageURL" class="text-danger"></span>
                         </div>
 
                         <div class="d-flex justify-content-center gap-3 mt-4">
