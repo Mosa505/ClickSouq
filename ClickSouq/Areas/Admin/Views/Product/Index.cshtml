@@ -21,14 +21,14 @@
                 <div class="col-6  text-end ">
 
                     <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary "> <i class="bi bi-plus-circle"></i> NEW Product  </a>
-
+                  
                 </div>
 
             </div>
 
 
 
-            <table class="table table-bordered table-hover table-striped">
+            <table id="tblData" class="table table-bordered table-hover table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">Title</th>
@@ -39,31 +39,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach (var Item in Model)
-                    {
-                        <tr>
-                            <td>@Item.Title</td>
-                            <td>@Item.ISBN</td>
-                            <td>@Item.Author</td>
-                            <td>@Item.ListPrice$</td>
-                            <td>@Item.Category.Name</td>
-                            
-                            <td>
-                                <div class="w-100 btn-group " role="group">
-                                    <a asp-Controller="Product" asp-action="Upsert" asp-route-id="@Item.Id" class="btn btn-light mx-2 ">
-                                        <i class="bi bi-pencil-square"></i> Edit
-                                    </a>
-
-                                    <a asp-Controller="Product" asp-action="Delete" asp-route-id="@Item.Id" class="btn btn-danger mx-2 ">
-                                        <i class="bi bi-trash3"></i> Delete
-                                    </a>
-
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
+               
             </table>
         </div>
 
@@ -71,5 +47,7 @@
     </div>
 </div>
 
-
+@section Scripts {
+    <script src="~/js/Product.js"></script>
+}
 

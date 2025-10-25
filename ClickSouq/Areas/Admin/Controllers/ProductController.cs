@@ -111,58 +111,34 @@ namespace BookNest.Areas.Admin.Controllers
 
         }
 
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var Product = _unitOfWork.Product.Get(e => e.Id == id);
-            if (Product == null)
-            {
-                return NotFound();
-            }
-            ProductViewModel productVM = new()
-            {
-                Product = Product,
-                CategoryList = _unitOfWork.Category.GetAll().Select(e =>
-                new SelectListItem
-                {
-                    Text = e.Name,
-                    Value = e.Id.ToString()
-                }
-
-                )
-            };
-
-            return View(productVM);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
-        {
-            var Product = _unitOfWork.Product.Get(e => e.Id == id);
-
-            if (Product == null)
-                return NotFound();
-
-            _unitOfWork.Product.Remove(Product);
-            _unitOfWork.Save();
-            TempData["success"] = "Product Delete successfully";
-            return RedirectToAction("Index");
-
-        }
-
         #region API Call 
-
+        [HttpGet]
         public IActionResult GetAll()
         {
-            var product = _unitOfWork.Product.GetAll(IncludeProperties:"Category").ToList();
-            return Json(new {data = product });
+            var product = _unitOfWork.Product.GetAll(IncludeProperties: "Category").ToList();
+            return Json(new { data = product });
+        }
+        public IActionResult Delete(int id)
+        {
+            var productDelete = _unitOfWork.Product.Get(e=>e.Id == id);
+            if (productDelete == null) {
+                return Json(new { success =false , massage ="Error While Deleting" });
+            }
+            // Delete Image
+            var oldImage = Path.Combine(_webHostEnvironment.WebRootPath, Path.GetFileName(productDelete.ImageURL));
+
+            if (System.IO.File.Exists(oldImage))
+            {
+                System.IO.File.Delete(oldImage);
+            }
+            //
+            _unitOfWork.Product.Remove(productDelete);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, massage = "Delete Successful" });
         }
 
-
         #endregion
+
     }
 }
