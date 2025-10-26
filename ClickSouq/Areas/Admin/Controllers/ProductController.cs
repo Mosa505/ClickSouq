@@ -146,8 +146,9 @@ namespace BookNest.Areas.Admin.Controllers
                 return Json(new { success = false, massage = "Error While Deleting" });
             }
             // Delete Image
-            var oldImage = Path.Combine(_webHostEnvironment.WebRootPath, Path.GetFileName(productDelete.ImageURL));
-
+            string productPath = Path.Combine(_webHostEnvironment.WebRootPath, @"images/product");
+            var oldImage = Path.Combine(productPath, Path.GetFileName(productDelete.ImageURL));
+           
             if (System.IO.File.Exists(oldImage))
             {
                 System.IO.File.Delete(oldImage);

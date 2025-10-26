@@ -22,6 +22,12 @@ namespace BookNest.Areas.Customer.Controllers
             return View(Product);
         }
 
+        public IActionResult Details(int id)
+        {
+            Product Product = _unitOfWork.Product.Get(e=> e.Id==id,IncludeProperties: "Category");
+            return View(Product);
+        }
+
         public IActionResult Privacy()
         {
             return View();
