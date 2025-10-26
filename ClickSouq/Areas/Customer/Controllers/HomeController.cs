@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,15 +9,17 @@ namespace BookNest.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var Product = _unitOfWork.Product.GetAll(IncludeProperties:"Category");
+            return View(Product);
         }
 
         public IActionResult Privacy()
