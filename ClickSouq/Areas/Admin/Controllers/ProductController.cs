@@ -83,6 +83,8 @@ namespace BookNest.Areas.Admin.Controllers
                 else
                 {
 
+                    if (Obj.Product.Id == 0) { 
+
                     ModelState.AddModelError("Product.ImageURL", "Please upload a product image.");
                     ProductViewModel productVM = new ProductViewModel()
                     {
@@ -95,7 +97,9 @@ namespace BookNest.Areas.Admin.Controllers
                         })
 
                     };
-                    return View(productVM);
+                        return View(productVM);
+                   }
+                    
                 }
 
                 if (Obj.Product.Id == 0)
