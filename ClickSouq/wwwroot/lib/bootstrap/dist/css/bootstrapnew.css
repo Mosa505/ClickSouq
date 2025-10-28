@@ -14247,19 +14247,3 @@ a {
 [data-bs-theme=dark] .toast-header {
     --bs-toast-header-color: #fff;
 }
-
-
-.navbar-nav .nav-link {
-   
-    color: #ccc;
-    transition: color 0.3s, background-color 0.3s;
-}
-
-    .navbar-nav .nav-link:hover {
-        color: #FFFF;
-        border-radius: 10px;
-    }
-body {
-    text-transform: uppercase;
-}
-

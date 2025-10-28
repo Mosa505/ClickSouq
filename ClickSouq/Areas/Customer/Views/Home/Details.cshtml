@@ -38,9 +38,9 @@
                         </div>
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">
-                                List Price:
+                                List Price :
                                 <span class="text-decoration-line-through">
-                                    @Model.ListPrice
+                                    @Model.ListPrice.ToString("C")
                                 </span>
                             </h6>
                         </div>
@@ -63,18 +63,25 @@
                                 <div>Price</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price</div>
+                                <div>@Model.Price.ToString("C")</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price50</div>
+                                <div>@Model.Price50.ToString("C")</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price100</div>
+                                <div>@Model.Price100.ToString("C")</div>
                             </div>
                         </div>
+                        
                         <div class="row pl-2 my-3">
-                            <p class="text-secondary lh-sm">Description</p>
+                            <div class="col-12">
+                                <div class="p-3 border rounded-3 ">
+                                    <h6>Description</h6>
+                                    <p class="text-dark lh-sm mb-0">@Html.Raw(Model.Description)</p>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="row pl-2 mb-3">
                             <div class="col-md-4">
                                 <div class="input-group mb-3">
