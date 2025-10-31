@@ -1,11 +1,14 @@
 ﻿using BookNest.DataAccess;
 using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
+using BookNest.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookNest.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _UnitDb;

@@ -22,7 +22,13 @@ namespace BookNest
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb"))
             );
 
-            builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options => {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
