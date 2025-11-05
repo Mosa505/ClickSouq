@@ -3,4 +3,50 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class=" shadow border-0 mt-4" style="max-width: 1500px; margin: auto;">
+    <div class="card-header bg-gradient text-light py-4"
+         style=" background-color:#08092E;border-bottom: none;">
+        <h2 class="text-center fw-semibold mb-0"> LIST OF Company </h2>
+    </div>
+
+    <div class="card-body bg-white p-5 rounded-bottom-4">
+
+        <div class="container">
+            <div class="row pb-3">
+
+                <div class="text-dark col-6 ">
+                </div>
+
+                <div class="col-6  text-end ">
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary "> <i class="bi bi-plus-circle"></i> NEW Product  </a>
+
+                </div>
+
+            </div>
+
+
+
+            <table id="tblData" class="table table-bordered table-hover table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col"> ISBN </th>
+                        <th scope="col"> Author </th>
+                        <th scope="col"> List Price </th>
+                        <th scope="col"> Category </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Product.js"></script>
+}
+
