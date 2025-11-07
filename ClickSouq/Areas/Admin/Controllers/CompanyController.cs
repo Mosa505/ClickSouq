@@ -22,5 +22,12 @@ namespace BookNest.Areas.Admin.Controllers
             return View(com);
 
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var AllCompany = _unitOfWork.Company.GetAll().ToList();
+            return Json(new { data = AllCompany });
+        }
     }
 }

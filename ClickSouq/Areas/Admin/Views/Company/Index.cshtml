@@ -19,22 +19,19 @@
 
                 <div class="col-6  text-end ">
 
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary "> <i class="bi bi-plus-circle"></i> NEW Product  </a>
+                    <a asp-controller="Company" asp-action="Index" class="btn btn-primary "> <i class="bi bi-plus-circle"></i> Add Company </a>
 
                 </div>
-
             </div>
-
-
-
             <table id="tblData" class="table table-bordered table-hover table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col"> ISBN </th>
-                        <th scope="col"> Author </th>
-                        <th scope="col"> List Price </th>
-                        <th scope="col"> Category </th>
+                        <th scope="col">Name</th>
+                        <th scope="col"> Street Address </th>
+                        <th scope="col"> City </th>
+                        <th scope="col"> State </th>
+                        <th scope="col"> Postal Code </th>
+                        <th scope="col"> Phone Number </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -47,6 +44,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/Product.js"></script>
+    <script src="~/js/Company.js"></script>
 }
 
