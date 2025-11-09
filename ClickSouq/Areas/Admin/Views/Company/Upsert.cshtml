@@ -1,0 +1,94 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<div class=" shadow border-0 mt-4" style="max-width: 1400px; margin: auto;">
+    <div class="card-header bg-gradient text-light py-4"
+         style=" background-color:#08092E;border-bottom: none;">
+        <h2 class="text-center fw-semibold mb-0">@(Model.Id != 0 ? "Update" : "Create") Company</h2>
+    </div>
+
+    <div class="card-body bg-white p-5 rounded-bottom-4">
+        <form method="post" class="row g-3" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12">
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="Name" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Name" class="ms-2"> Title </label>
+                            <span asp-validation-for="Name" class="text-danger "></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="StreetAddress" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="StreetAddress" class="ms-2"></label>
+                            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="City" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="City" class="ms-2"></label>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="State" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="State" class="ms-2"></label>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input asp-for="PostalCode" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="PostalCode" class="ms-2"></label>
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input asp-for="PhoneNumber" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="PhoneNumber" class="ms-2"></label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        
+                       
+
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            @if (Model.Id == 0)
+                            {
+                                <button type="submit" class="btn btn-success col-3">
+                                    CREATE
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-success col-3">
+                                    Update
+                                </button>
+
+                            }
+
+                            <a asp-controller="Company" asp-action="Index" class="btn btn-close-white  col-3 ">
+
+                                <i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+  
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
