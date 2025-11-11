@@ -36,7 +36,7 @@ namespace BookNest.Areas.Admin.Controllers
                 return View(Empty_company);
             }
             else
-            {var company = _unitOfWork.Product.Get(e => e.Id == id);
+            {var company = _unitOfWork.Company.Get(e => e.Id == id);
                 return View(company);
             }
 
