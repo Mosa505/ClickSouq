@@ -3,6 +3,7 @@ using BookNest.Models;
 using BookNest.Models.ViewModels;
 using BookNest.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,18 +31,48 @@ namespace BookNest.Areas.Admin.Controllers
         public IActionResult Upsert(int? id)
         {
             var Empty_company = new Company();
-             
+
             if (id == null || id == 0)
             {
                 return View(Empty_company);
             }
             else
-            {var company = _unitOfWork.Company.Get(e => e.Id == id);
+            {
+                var company = _unitOfWork.Company.Get(e => e.Id == id);
                 return View(company);
             }
 
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(Company Obj)
+        {
 
+            if (ModelState.IsValid)
+            { 
+                if (Obj.Id == 0)
+                {
+                    _unitOfWork.Company.Add(Obj);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Company Add successfully";
+                }
+
+                else
+                {
+                    _unitOfWork.Company.Update(Obj);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Company Update successfully";
+                }
+
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(Obj);
+            }
+
+        }
 
         #region Call API
         [HttpGet]
@@ -49,7 +80,7 @@ namespace BookNest.Areas.Admin.Controllers
         {
             var AllCompany = _unitOfWork.Company.GetAll().ToList();
             return Json(new { data = AllCompany });
-        } 
+        }
         #endregion
     }
 }
