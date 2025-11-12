@@ -81,6 +81,22 @@ namespace BookNest.Areas.Admin.Controllers
             var AllCompany = _unitOfWork.Company.GetAll().ToList();
             return Json(new { data = AllCompany });
         }
+
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var CompanyDelete = _unitOfWork.Company.Get(e => e.Id == id);
+            if (CompanyDelete == null)
+            {
+                return Json(new { success = false, massage = "Error While Deleting" });
+            }
+            _unitOfWork.Company.Remove(CompanyDelete);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, massage = "Delete Successful" });
+        }
+
         #endregion
     }
 }
