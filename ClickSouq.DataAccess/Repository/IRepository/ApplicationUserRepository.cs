@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace BookNest.DataAccess.Repository.IRepository
 {
-    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCart
+    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUser
     {
         private readonly ApplicationDbContext _db;
 
-        public ShoppingCartRepository (ApplicationDbContext db) :base(db)
+        public ApplicationUserRepository(ApplicationDbContext db) :base(db)
         {
             _db = db;
         }
         
-
-        public void Update(ShoppingCart shoppingCart)
-        {
-            _db.Update(shoppingCart);
-        }
+        
     }
 }

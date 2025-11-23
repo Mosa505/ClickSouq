@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BookNest.DataAccess.Repository.IRepository
 {
-    public interface IShoppingCart : IRepository<ShoppingCart>
+    public interface IApplicationUser : IRepository<ApplicationUser>
     {
-        void Update (ShoppingCart shoppingCart);
+        
       
 
     }

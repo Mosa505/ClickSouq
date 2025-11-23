@@ -11,6 +11,7 @@ namespace BookNest.Models
 {
     public class ShoppingCart
     {
+        [Key]
         public int Id { get; set; }
         [Range(1,1000,ErrorMessage ="Please enter a value Between 1 and 1000")]
         public int Count { get; set; }

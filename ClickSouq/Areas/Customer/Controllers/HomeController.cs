@@ -1,7 +1,9 @@
-using System.Diagnostics;
 using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BookNest.Areas.Customer.Controllers
 {
@@ -21,11 +23,36 @@ namespace BookNest.Areas.Customer.Controllers
             var Product = _unitOfWork.Product.GetAll(IncludeProperties:"Category");
             return View(Product);
         }
-
+        [HttpGet]
         public IActionResult Details(int id)
         {
-            Product Product = _unitOfWork.Product.Get(e=> e.Id==id,IncludeProperties: "Category");
-            return View(Product);
+            var product = _unitOfWork.Product.Get(e => e.Id == id, IncludeProperties: "Category");
+            ShoppingCart cart = new ShoppingCart() { 
+             Product = product,
+             Count = 1,
+             ProductId = id
+            
+            };
+            return View(cart);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+           
+            var ClaimsIdentity = (ClaimsIdentity)User.Identity;
+            var UserId = ClaimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = UserId;
+            shoppingCart.Id = 0;
+            shoppingCart.Product = null;
+            _unitOfWork.ShoppingCart.Add(shoppingCart);
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
+
+            
         }
 
         public IActionResult Privacy()

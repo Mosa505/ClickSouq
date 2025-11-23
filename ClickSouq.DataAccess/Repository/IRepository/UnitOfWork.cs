@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+﻿using BookNest.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,15 @@ namespace BookNest.DataAccess.Repository.IRepository
         private readonly ApplicationDbContext _unitDb;
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public IShoppingCart ShoppingCart { get; private set; }
+        public IApplicationUser ApplicationUser { get; private set; }
 
         public ICompanyRepository Company { get; private set; }
         public UnitOfWork( ApplicationDbContext UnitDb)
         {
             _unitDb = UnitDb;
+            ApplicationUser = new ApplicationUserRepository(_unitDb);
+            ShoppingCart = new ShoppingCartRepository(_unitDb);
             Category =new CategoryRepository(_unitDb);
             Product =new ProductRepository(_unitDb);
             Company = new CompanyRepository(_unitDb);
