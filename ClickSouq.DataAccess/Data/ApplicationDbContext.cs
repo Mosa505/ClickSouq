@@ -13,6 +13,7 @@ namespace BookNest.DataAccess
         public DbSet<Category> categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> companies { get; set; }
+        public DbSet<ShoppingCart> shoppingCarts { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +24,7 @@ namespace BookNest.DataAccess
                 new Category { Id = 3, Name = "Historical", DisplayOrder = 3 },
                 new Category { Id = 4, Name = "Autobiography", DisplayOrder = 4 },
                 new Category { Id = 5, Name = "Thought", DisplayOrder = 5 }
-                
+
                 );
 
             modelBuilder.Entity<Product>().HasData(
@@ -40,7 +41,7 @@ namespace BookNest.DataAccess
                    Price50 = 80,
                    Price100 = 70,
                    CategoryId = 1,
-                   ImageURL=""
+                   ImageURL = ""
 
                },
 
