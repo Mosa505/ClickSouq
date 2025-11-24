@@ -20,18 +20,19 @@ namespace BookNest.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            var Product = _unitOfWork.Product.GetAll(IncludeProperties:"Category");
+            var Product = _unitOfWork.Product.GetAll(IncludeProperties: "Category");
             return View(Product);
         }
         [HttpGet]
         public IActionResult Details(int id)
         {
             var product = _unitOfWork.Product.Get(e => e.Id == id, IncludeProperties: "Category");
-            ShoppingCart cart = new ShoppingCart() { 
-             Product = product,
-             Count = 1,
-             ProductId = id
-            
+            ShoppingCart cart = new ShoppingCart()
+            {
+                Product = product,
+                Count = 1,
+                ProductId = id
+
             };
             return View(cart);
         }
@@ -41,18 +42,30 @@ namespace BookNest.Areas.Customer.Controllers
         [Authorize]
         public IActionResult Details(ShoppingCart shoppingCart)
         {
-           
+
             var ClaimsIdentity = (ClaimsIdentity)User.Identity;
             var UserId = ClaimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = UserId;
             shoppingCart.Id = 0;
             shoppingCart.Product = null;
+            
+            ShoppingCart CartFromDb = _unitOfWork.ShoppingCart.Get(e => e.ApplicationUserId == UserId
+             && e.ProductId == shoppingCart.ProductId
+
+            );
+            if (CartFromDb != null)
+            {
+                 CartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(CartFromDb);
+            }
+            else { 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
+            }
             _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
 
-            
+
         }
 
         public IActionResult Privacy()
