@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BookNest.DataAccess.Repository.IRepository
 {
@@ -24,9 +25,17 @@ namespace BookNest.DataAccess.Repository.IRepository
             Dbset.Add(item);
         }
 
-        public T Get(Expression<Func<T, bool>> filter , string? IncludeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter , string? IncludeProperties = null,bool Track =false)
         {
-            IQueryable<T> query = Dbset;
+            IQueryable<T> query;
+            if (Track)
+            {
+                query = Dbset;
+            }
+            else {
+                query = Dbset.AsNoTracking();
+            }
+
             query = query.Where(filter);
             if (!string.IsNullOrEmpty(IncludeProperties))
             {
@@ -40,11 +49,14 @@ namespace BookNest.DataAccess.Repository.IRepository
             }
             return query.FirstOrDefault();
 
+
         }
 
-        public IEnumerable<T> GetAll(string? IncludeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? IncludeProperties = null)
         {
             IQueryable<T> query = Dbset;
+            if (filter != null) { query = query.Where(filter); }
+           
             if (!string.IsNullOrEmpty(IncludeProperties))
             {
                 foreach (var include in IncludeProperties

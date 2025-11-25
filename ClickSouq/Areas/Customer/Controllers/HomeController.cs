@@ -62,6 +62,7 @@ namespace BookNest.Areas.Customer.Controllers
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
             _unitOfWork.Save();
+            TempData["success"] = "Add Book successfully";
 
             return RedirectToAction(nameof(Index));
 
