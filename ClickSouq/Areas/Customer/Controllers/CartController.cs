@@ -71,6 +71,11 @@ namespace BookNest.Areas.Customer.Controllers
 
         }
 
+        public IActionResult Summary()
+        {
+
+            return View();
+        }
         public double GetPriceBaseOnQuantity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count <= 50)
