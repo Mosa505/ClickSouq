@@ -10,6 +10,6 @@ namespace BookNest.Models.ViewModels
     {
        public IEnumerable<ShoppingCart> shoppingCartsList { get; set; }
        
-        public double OrderTotal { get; set; }
+       public OrderHeader orderHeader { get; set; }
     }
 }

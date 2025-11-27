@@ -13,7 +13,8 @@ namespace BookNest.DataAccess.Repository.IRepository
         public ICompanyRepository Company { get; }
         public IShoppingCart ShoppingCart { get; }
         public IApplicationUser ApplicationUser { get; }
-
+        public IOrderHeaderRepository OrderHeader  { get; }
+        public IOrderDetailRepository OrderDetail { get; }
         void Save();
 
 

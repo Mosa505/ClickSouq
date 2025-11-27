@@ -17,6 +17,11 @@ namespace BookNest.DataAccess.Repository.IRepository
         public IApplicationUser ApplicationUser { get; private set; }
 
         public ICompanyRepository Company { get; private set; }
+
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+
+        public IOrderDetailRepository OrderDetail { get; private set; }
+
         public UnitOfWork( ApplicationDbContext UnitDb)
         {
             _unitDb = UnitDb;
@@ -25,6 +30,8 @@ namespace BookNest.DataAccess.Repository.IRepository
             Category =new CategoryRepository(_unitDb);
             Product =new ProductRepository(_unitDb);
             Company = new CompanyRepository(_unitDb);
+            OrderHeader= new OrderHeaderRepository(_unitDb);
+            OrderDetail = new OrderDetailRepository(_unitDb);
         }
         public void Save()
         {
