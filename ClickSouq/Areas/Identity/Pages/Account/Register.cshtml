@@ -1,7 +1,6 @@
 ﻿@page
 @model RegisterModel
 
-
 @{
     ViewData["Title"] = "Register";
 }
@@ -66,6 +65,7 @@
                                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                                 </div>
                             </div>
+                            @if (User.IsInRole(SD.Role_Admin)) { 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
@@ -78,7 +78,8 @@
                                         <option value="0"> --- Select Company ---</option>
                                     </select>
                                 </div>
-                            </div>
+                                </div>
+                            }
 
                             <!-- Submit button -->
                             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">

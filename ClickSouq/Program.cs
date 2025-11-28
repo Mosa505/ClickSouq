@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BookNest.Utility;
 
+
 namespace BookNest
 {
     public class Program
@@ -21,6 +22,8 @@ namespace BookNest
             builder.Services.AddDbContext<ApplicationDbContext>(options=>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb"))
             );
+
+            builder.Services.Configure<StripeSetting>(builder.Configuration.GetSection("Stripe"));
 
             builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -45,7 +48,7 @@ namespace BookNest
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+          //  StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
             app.UseRouting();
             app.UseAuthentication();    
             app.UseAuthorization();
